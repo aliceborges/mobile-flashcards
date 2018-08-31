@@ -64,6 +64,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           negativeScore: 0
         };
+
 		default:
 			return state;
 	}

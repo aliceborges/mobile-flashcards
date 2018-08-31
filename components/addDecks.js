@@ -2,6 +2,16 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Button } from 'react-native'
 import t from 'tcomb-form-native'
 import { teal } from '../utils/colors'
+import * as QuizApi from '../utils/api'
+import { saveDeckTitle } from '../actions'
+import { connect } from 'react-redux'
+import uuidv1 from 'uuid'
+
+const mapDispatchToProps = dispatch => {
+	return {
+		saveDeckTitle: (id, title) => dispatch(saveDeckTitle(id, title))
+	};
+};
 
 const Form = t.form.Form;
 
@@ -52,11 +62,23 @@ const options = {
   stylesheet: formStyles,
 };
 
-export default class addCards extends Component {
+class addDecks extends React.Component {
+
+  state = {
+    title: ''
+  };
+
   handleSubmit = () => {
-    const value = this._form.getValue();
-    console.log('value: ', value);
-  }
+    //const value = this._form.getValue();
+    //console.log('value: ', value);
+    const id = uuidv1();
+
+    QuizApi.saveDeckTitle(id, this.state.title)
+		  .then(() => {
+  			this.props.saveDeckTitle(id, this.state.title);
+  			this.props.navigation.navigate('Decks');
+		});
+  };
 
   render() {
     return (
@@ -65,13 +87,14 @@ export default class addCards extends Component {
           ref={c => this._form = c}
           type={User}
           options={options}
+          onChangeText = { (title) => { this.setState({title}); } }
         />
         <Button
           color = { teal }
           title = 'Cadastrar'
           onPress = { this.handleSubmit }
         />
-      </View> 
+      </View>
     );
   }
 }
@@ -87,3 +110,5 @@ const styles = StyleSheet.create({
     fontSize: 30
   }
 });
+
+export default connect(null, mapDispatchToProps)(addDecks);
