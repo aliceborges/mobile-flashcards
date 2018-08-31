@@ -7,6 +7,10 @@ import Decks from './components/Decks'
 import addDecks from './components/addDecks'
 import { Constants } from 'expo'
 import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './reducers'
+
+const store = createStore(reducer);
 
 function StatusBarApp ({backgroundColor, ...props}) {
   return(
@@ -63,7 +67,7 @@ const MainNavigation = createStackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <Provider>
+      <Provider store= { store }>
         <View style={styles.container}>
           <StatusBarApp backgroundColor={teal} barStyle="light-content" />
           <MainNavigation/>
@@ -76,5 +80,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
+  }, 
 });
