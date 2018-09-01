@@ -23,15 +23,17 @@ const mapDispatchToProps = dispatch => {
 class Decks extends React.Component {
 
   componentDidMount(){
-  	 QuizApi.getDecks().then((resul) => {
-  			if(resul){
-  				resul.map((deck) => {
+  	 QuizApi.getDecks().then((decks) => {
+  			if(decks){
+  				decks.map((deck) => {
+						if (typeof(deck.title) == String){
   					this.props.saveDeckTitle(deck.id, deck.title);
   					if (deck.questions) {
   						deck.questions.map((question) => {
   							this.props.saveCardDeck(deck.id, question);
   						});
   					}
+					}
   				});
   			}
   		});

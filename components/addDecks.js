@@ -17,7 +17,7 @@ const Form = t.form.Form;
 
 const User = t.struct({
   'Qual é o título de seu novo deck?': t.String,
-});
+}, 'DeckTitle');
 
 const formStyles = {
   ...Form.stylesheet,
@@ -64,30 +64,34 @@ const options = {
 
 class addDecks extends React.Component {
 
-  state = {
-    title: ''
-  };
+	state = { title: '' }
 
   handleSubmit = () => {
-    //const value = this._form.getValue();
-    //console.log('value: ', value);
-    const id = uuidv1();
 
-    QuizApi.saveDeckTitle(id, this.state.title)
-		  .then(() => {
-  			this.props.saveDeckTitle(id, this.state.title);
-  			this.props.navigation.navigate('Decks');
-		});
-  };
+    let title = '';
+
+    const value = JSON.parse(JSON.stringify(this.refs.form.getValue()), function(k, v){
+      if (typeof(v) != 'object') { title = v; }
+    });
+
+    if (title != '' && title != null){
+      const id = uuidv1();
+
+      QuizApi.saveDeckTitle(id, title)
+        .then(() => {
+          this.props.saveDeckTitle(id, title);
+          this.props.navigation.navigate('Decks');
+      });
+    }
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <Form
-          ref={c => this._form = c}
-          type={User}
-          options={options}
-          onChangeText = { (title) => { this.setState({title}); } }
+          ref='form'
+          type= { User }
+          options= { options }
         />
         <Button
           color = { teal }
