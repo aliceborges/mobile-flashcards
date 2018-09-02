@@ -6,6 +6,7 @@ import * as QuizApi from '../utils/api'
 import { toArray } from '../utils/helpers'
 import { saveDeckTitle, saveCardDeck } from '../actions'
 import { connect } from 'react-redux'
+import { createStackNavigator } from 'react-navigation'
 
 const mapStateToProps = state => {
 	return {
@@ -54,7 +55,13 @@ class Decks extends React.Component {
                   color = { fuchsia }
                 />
                 <CardButton
-                  title = 'Jogar'
+                  title = 'Acessar'
+                  onPress={() => { this.props.navigation.navigate('DeckDetails',{ 
+                    id: deck.id,
+                    title: deck.title,
+                    qtdCards: deck.questions ? deck.questions.length : 0,
+                    })
+                  }}
                 />
               </CardAction>
             </Card>

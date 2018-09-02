@@ -6,6 +6,7 @@ import * as QuizApi from '../utils/api'
 import { saveDeckTitle } from '../actions'
 import { connect } from 'react-redux'
 import uuidv1 from 'uuid'
+import { createStackNavigator } from 'react-navigation'
 
 const mapDispatchToProps = dispatch => {
 	return {
@@ -64,7 +65,17 @@ const options = {
 
 class addDecks extends React.Component {
 
-	state = { title: '' }
+	state = {  };
+
+  onChange(value) {
+    this.setState({ value });
+  }
+
+  clearForm() {
+    // clear content from all textbox
+    this.setState({ value: null });
+  }
+
 
   handleSubmit = () => {
 
@@ -80,9 +91,15 @@ class addDecks extends React.Component {
       QuizApi.saveDeckTitle(id, title)
         .then(() => {
           this.props.saveDeckTitle(id, title);
-          this.props.navigation.navigate('Decks');
+          this.props.navigation.navigate('DeckDetails',{ 
+            id: id,
+            title: title,
+            qtdCards: 0,
+          });
       });
-    }
+    };
+
+    this.clearForm();
   }
 
   render() {
@@ -91,6 +108,8 @@ class addDecks extends React.Component {
         <Form
           ref='form'
           type= { User }
+          value = { this.state.value }
+          onChange={ this.onChange.bind(this) }
           options= { options }
         />
         <Button

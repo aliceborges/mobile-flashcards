@@ -5699,6 +5699,10 @@ react-native-scripts@1.14.0:
     rimraf "^2.6.1"
     xdl "48.1.4"
 
+react-native-snackbar@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-snackbar/-/react-native-snackbar-0.5.0.tgz#f065e1616142dff45cc4bf33c85009fc2f9ae6b4"
+
 react-native-svg-web@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-svg-web/-/react-native-svg-web-1.0.1.tgz#16e1784077b6e5b6c7ebd9c3829e6684211cba99"

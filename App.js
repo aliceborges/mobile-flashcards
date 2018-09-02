@@ -5,10 +5,12 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation'
 import Decks from './components/Decks'
 import addDecks from './components/addDecks'
+import DeckDetails from './components/DeckDetails'
 import { Constants } from 'expo'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
+
 
 const store = createStore(reducer);
 
@@ -58,10 +60,16 @@ const Tabs = createMaterialTopTabNavigator({
 const MainNavigation = createStackNavigator({
   Home: {
    screen: Tabs,
-   navigationOptions: {
-     header: null
-   }
-   }
+   navigationOptions:{
+    header:null
+    },
+   },
+  DeckDetails: {
+    screen: DeckDetails,
+  },
+  Decks: {
+    screen: Decks,
+  }
  })
 
 export default class App extends React.Component {
