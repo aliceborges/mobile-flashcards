@@ -6,6 +6,7 @@ import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navig
 import Decks from './components/Decks'
 import addDecks from './components/addDecks'
 import DeckDetails from './components/DeckDetails'
+import addCards from './components/addCards'
 import { Constants } from 'expo'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
@@ -69,7 +70,10 @@ const MainNavigation = createStackNavigator({
   },
   Decks: {
     screen: Decks,
-  }
+  },
+  addCards: {
+    screen: addCards,
+  },
  })
 
 export default class App extends React.Component {

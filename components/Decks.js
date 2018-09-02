@@ -41,6 +41,7 @@ class Decks extends React.Component {
   	}
 
   render(){
+    
     return(
       <View>
         <ScrollView>
@@ -51,7 +52,7 @@ class Decks extends React.Component {
                 inColumn={true}>
                 <CardTitle
                   title = { deck.title }
-                  subtitle = { deck.questions ? deck.questions.length : 0 }
+                  subtitle = { (deck.questions ? deck.questions.length : 0) + ' card(s)'}
                   color = { fuchsia }
                 />
                 <CardButton

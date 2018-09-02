@@ -9,17 +9,22 @@ class DeckDetails extends React.Component {
         const { navigation } = this.props;
         id =  navigation.getParam('id', null);
         title =  navigation.getParam('title', null);
-        qtdCards =  navigation.getParam('qtdCards', null);
+        qtdCards =  navigation.getParam('qtdCards', 0);
 
         return ( 
             <View style={styles.container}> 
                 <Text style = {styles.title}> { title } </Text>
-                <Text style = {styles.subtitle}> { qtdCards + ' cards'} </Text>
+                <Text style = {styles.subtitle}> { qtdCards + ' card(s)'} </Text>
 
                 <Button
                     color = { teal }
                     title = 'Adicionar Cards'
-                    //onPress = { this.handleSubmit }
+                    onPress={() => { this.props.navigation.navigate('addCards',{ 
+                        id: id,
+                        title: title,
+                        qtdCards: qtdCards
+                        })
+                    }}
                 />
                 <Text></Text>
                 <Button
