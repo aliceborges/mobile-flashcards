@@ -1,15 +1,9 @@
 import { searchDeck } from '../utils/helpers.js';
 import { SAVE_DECK_TITLE,
-         SAVE_CARD_DECK,
-         ADD_POSITIVE_SCORE,
-         CLEAR_POSITIVE_SCORE,
-         ADD_NEGATIVE_SCORE,
-         CLEAR_NEGATIVE_SCORE } from '../actions';
+         SAVE_CARD_DECK } from '../actions';
 
 const initialState = {
 	decks: {},
-	positiveScore: 0,
-  negativeScore: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -40,31 +34,7 @@ const reducer = (state = initialState, action) => {
 					[action.idDeck]: deck
 				}
 			};
-
-    case ADD_POSITIVE_SCORE:
-			return {
-				...state,
-				positiveScore: state.positiveScore + 1
-			};
-
-		case CLEAR_POSITIVE_SCORE:
-			return {
-				...state,
-				positiveScore: 0
-			};
-
-      case ADD_NEGATIVE_SCORE:
-        return {
-          ...state,
-          negativeScore: state.positiveScore + 1
-        };
-
-      case CLEAR_NEGATIVE_SCORE:
-        return {
-          ...state,
-          negativeScore: 0
-        };
-
+    
 		default:
 			return state;
 	}
