@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation'
 import * as QuizApi from '../utils/api'
 import { teal } from '../utils/colors'
 import { connect } from 'react-redux'
+import { setLocalNotification, clearLocalNotifications } from '../utils/notifications'
 
 class Quiz extends React.Component {
 
@@ -49,6 +50,7 @@ class Quiz extends React.Component {
         if (index < questions.length - 1 ) {
           this.setState({ index: index + 1, answer: false })
         } else {
+          clearLocalNotifications().then(setLocalNotification)
           this.showAlert(questions)
         }
     

@@ -12,7 +12,7 @@ import { Constants } from 'expo'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
-
+import { setLocalNotification } from './utils/notifications'
 
 const store = createStore(reducer);
 
@@ -81,6 +81,9 @@ const MainNavigation = createStackNavigator({
  })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store= { store }>
