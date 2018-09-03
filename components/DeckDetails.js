@@ -29,8 +29,12 @@ class DeckDetails extends React.Component {
                 <Text></Text>
                 <Button
                     color = { teal }
-                    title = 'Começar Quiz'
-                    //onPress = { this.handleSubmit }
+                    title = 'Iniciar Quiz'
+                    onPress={() => { this.props.navigation.navigate('Quiz',{ 
+                        id: id,
+                        })
+                    }}
+                    disabled = { qtdCards == 0 ? true : false }
                 />
             </View>
         )

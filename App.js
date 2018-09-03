@@ -7,6 +7,7 @@ import Decks from './components/Decks'
 import addDecks from './components/addDecks'
 import DeckDetails from './components/DeckDetails'
 import addCards from './components/addCards'
+import Quiz from './components/Quiz'
 import { Constants } from 'expo'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
@@ -74,6 +75,9 @@ const MainNavigation = createStackNavigator({
   addCards: {
     screen: addCards,
   },
+  Quiz: {
+    screen: Quiz,
+  }
  })
 
 export default class App extends React.Component {
