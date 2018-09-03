@@ -7,6 +7,7 @@ import { toArray } from '../utils/helpers'
 import { saveDeckTitle, saveCardDeck } from '../actions'
 import { connect } from 'react-redux'
 import { createStackNavigator } from 'react-navigation'
+import Emoji from 'react-native-emoji'
 
 const mapStateToProps = state => {
 	return {
@@ -43,9 +44,10 @@ class Decks extends React.Component {
   render(){
     
     return(
+      this.props.decks != '' ?
       <View>
         <ScrollView>
-          {this.props.decks.map((deck) => (
+          { this.props.decks.map((deck) => (
             <Card key = { deck.id }>
               <CardAction
                 separator={true}
@@ -67,10 +69,26 @@ class Decks extends React.Component {
               </CardAction>
             </Card>
           ))}
-        </ScrollView>
-      </View>
+            </ScrollView>
+            </View>
+          : 
+            <View style = { styles.container }>
+             <Text style = { styles.title }>Não há decks cadastrados <Emoji name="cry" /></Text>
+              <Text style = { styles.title }>Vem cadastrar! É só arrastar pro lado <Emoji name="arrow_right" /></Text>
+            </View>
     );
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  title: {
+      fontSize: 20,
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Decks);

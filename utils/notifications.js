@@ -8,7 +8,7 @@ export function clearLocalNotifications() {
     .then(Notifications.cancelAllScheduledNotificationsAsync())
 }
 
-export function cretateNotification() {
+export function createNotification() {
   return {
     title: 'Quiz',
     body: "Vem fazer um quiz hoje!",
@@ -39,7 +39,7 @@ export function setLocalNotification() {
               tomorrow.setMinutes(0)
 
               Notifications.scheduleLocalNotificationAsync(
-                cretateNotification(),
+                createNotification(),
                 {
                   time: tomorrow,
                   repeat: 'day'
