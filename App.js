@@ -16,6 +16,10 @@ import { setLocalNotification } from './utils/notifications'
 
 const store = createStore(reducer);
 
+store.subscribe(() => {
+    localStorage.state = JSON.stringify(store.getState());
+ });
+
 function StatusBarApp ({backgroundColor, ...props}) {
   return(
     <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
@@ -99,5 +103,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  }, 
+  },
 });
